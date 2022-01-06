@@ -10,7 +10,7 @@ class RenderCV extends Component {
   }
 
   render() {
-    return <div class="render-cv">Hello from RenderCV</div>;
+    return <div className="render-cv">Hello from RenderCV</div>;
   }
 }
 
