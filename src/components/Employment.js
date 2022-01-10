@@ -1,127 +1,60 @@
 import { Component } from "react";
-
-import "./Components.css";
+import EmploymentItem from "./EmploymentItem";
+import "./Employment.css";
 
 class Employment extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
+    this.keys = [];
 
-    this.state = {
-      company: "",
-      title: "",
-      description: "",
-      startDate: "",
-      endDate: "",
-      formIsActive: true,
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.toggleMode = this.toggleMode.bind(this);
+    this.createItem = this.createItem.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
+    this.renderEmployment = this.renderEmployment.bind(this);
   }
 
-  handleChange(e) {
-    const { name, value } = e.target;
-    this.setState((prev) => {
-      const next = { ...prev };
-      next[name] = value;
-      return next;
-    });
+  componentDidMount() {
+    this.createItem();
   }
 
-  toggleMode(e) {
-    if (e) {
-      e.preventDefault();
-    }
-    this.setState((prev) => {
-      const next = { ...prev };
-      next.formIsActive = !next.formIsActive;
-      return next;
-    });
+  createItem() {
+    const key = ["emp", Date.now()].join("_");
+    this.keys.push(key);
+    this.setState((state) => state);
   }
 
-  renderForm() {
-    const { company, title, description, startDate, endDate } = this.state;
-    return (
-      <form name="Employment" className="form" onSubmit={this.toggleMode}>
-        <ul>
-          <li>
-            <input
-              type="text"
-              value={company}
-              onChange={this.handleChange}
-              name="company"
-            />
-            <label>Company</label>
-          </li>
-
-          <li>
-            <input
-              type="text"
-              value={title}
-              onChange={this.handleChange}
-              name="title"
-            />
-            <label>Title</label>
-          </li>
-
-          <li>
-            <input
-              type="text"
-              value={description}
-              onChange={this.handleChange}
-              name="description"
-            />
-            <label>Description</label>
-          </li>
-
-          <li>
-            <input
-              type="date"
-              value={startDate}
-              onChange={this.handleChange}
-              name="startDate"
-            />
-            <label>Start Date</label>
-          </li>
-
-          <li>
-            <input
-              type="date"
-              value={endDate}
-              onChange={this.handleChange}
-              name="endDate"
-            />
-            <label>End Date</label>
-          </li>
-        </ul>
-        <input type="submit" value="Submit" />
-      </form>
-    );
+  deleteItem(e) {
+    const key = e.target.name;
+    const index = this.keys.indexOf(key);
+    this.keys.splice(index, 1);
+    this.setState((state) => state);
   }
 
-  renderInfo() {
-    const { company, title, description, startDate, endDate } = this.state;
-    return (
-      <div>
-        {" "}
-        <div>
-          <h1>{title}</h1>
-          <h4>{description}</h4>
-          <h4>{company}</h4>
-          <h5>{startDate}</h5>
-          <h5>{endDate}</h5>
-          <input type="button" value="Edit" onClick={this.toggleMode} />
+  renderEmployment() {
+    const { editModeIsActive } = this.props;
+    return this.keys.map((key) => {
+      return (
+        <div key={key}>
+          <EmploymentItem editModeIsActive={editModeIsActive} />
+          {editModeIsActive ? (
+            <button name={key} onClick={this.deleteItem}>
+              Delete
+            </button>
+          ) : null}
         </div>
-      </div>
-    );
+      );
+    });
   }
 
   render() {
-    if (this.state.formIsActive) {
-      return this.renderForm();
-    } else {
-      return this.renderInfo();
-    }
+    return (
+      <div className="employment">
+        {this.renderEmployment()}
+        {this.props.editModeIsActive ? (
+          <button onClick={this.createItem}>Add Employment</button>
+        ) : null}
+      </div>
+    );
   }
 }
 

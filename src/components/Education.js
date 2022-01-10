@@ -1,100 +1,60 @@
 import { Component } from "react";
-
-import "./Components.css";
+import EducationItem from "./EducationItem";
+import "./Education.css";
 
 class Education extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
+    this.keys = [];
 
-    this.state = {
-      institution: "",
-      program: "",
-      date: "",
-      formIsActive: true,
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.toggleMode = this.toggleMode.bind(this);
+    this.createItem = this.createItem.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
+    this.renderEducation = this.renderEducation.bind(this);
   }
 
-  handleChange(e) {
-    const { name, value } = e.target;
-    this.setState((prev) => {
-      const next = { ...prev };
-      next[name] = value;
-      return next;
+  componentDidMount() {
+    this.createItem();
+  }
+
+  createItem() {
+    const key = ["edu", Date.now()].join("_");
+    this.keys.push(key);
+    this.setState((state) => state);
+  }
+
+  deleteItem(e) {
+    const key = e.target.name;
+    const index = this.keys.indexOf(key);
+    this.keys.splice(index, 1);
+    this.setState((state) => state);
+  }
+
+  renderEducation() {
+    const { editModeIsActive } = this.props;
+    return this.keys.map((key) => {
+      return (
+        <div key={key}>
+          <EducationItem editModeIsActive={editModeIsActive} />
+          {editModeIsActive ? (
+            <button name={key} onClick={this.deleteItem}>
+              Delete
+            </button>
+          ) : null}
+        </div>
+      );
     });
-  }
-
-  toggleMode(e) {
-    if (e) {
-      e.preventDefault();
-    }
-    this.setState((prev) => {
-      const next = { ...prev };
-      next.formIsActive = !next.formIsActive;
-      return next;
-    });
-  }
-
-  renderForm() {
-    const { institution, program, date } = this.state;
-    return (
-      <form name="Education" className="form" onSubmit={this.toggleMode}>
-        <ul>
-          <li>
-            <input
-              type="text"
-              value={institution}
-              onChange={this.handleChange}
-              name="institution"
-            />
-            <label>Institution</label>
-          </li>
-
-          <li>
-            <input
-              type="text"
-              value={program}
-              onChange={this.handleChange}
-              name="program"
-            />
-            <label>Program</label>
-          </li>
-
-          <li>
-            <input
-              type="date"
-              value={date}
-              onChange={this.handleChange}
-              name="date"
-            />
-            <label>Date</label>
-          </li>
-        </ul>
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
-
-  renderInfo() {
-    const { institution, program, date } = this.state;
-    return (
-      <div>
-        <h2>{institution}</h2>
-        <h3>{program}</h3>
-        <h3>{date}</h3>
-        <input type="button" value="Edit" onClick={this.toggleMode} />
-      </div>
-    );
   }
 
   render() {
-    if (this.state.formIsActive) {
-      return this.renderForm();
-    } else {
-      return this.renderInfo();
-    }
+    return (
+      <div className="education">
+        {this.renderEducation()}
+        {this.props.editModeIsActive ? (
+          <button onClick={this.createItem}>Add Education</button>
+        ) : null}
+      </div>
+    );
   }
 }
 

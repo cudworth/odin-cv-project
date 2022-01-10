@@ -9,21 +9,46 @@ import Employment from "./components/Employment";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { editModeIsActive: true };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleMode = this.toggleMode.bind(this);
+    this.saveButton = this.saveButton.bind(this);
   }
 
-  handleSubmit(data) {
-    console.log(data);
+  toggleMode(e) {
+    if (e) {
+      e.preventDefault();
+    }
+    this.setState((prev) => {
+      const next = { ...prev };
+      next.editModeIsActive = !next.editModeIsActive;
+      return next;
+    });
+  }
+
+  saveButton() {
+    if (this.state.editModeIsActive) {
+      return <button onClick={this.toggleMode}>Save Changes</button>;
+    } else {
+      return null;
+    }
   }
 
   render() {
+    const { editModeIsActive } = this.state;
     return (
-      <div className="App">
-        <General />
-        <Education />
-        <Employment />
+      <div
+        className="App"
+        onClick={() => {
+          if (!editModeIsActive) {
+            this.toggleMode();
+          }
+        }}
+      >
+        {this.saveButton()}
+        <General editModeIsActive={editModeIsActive} />
+        <Education editModeIsActive={editModeIsActive} />
+        <Employment editModeIsActive={editModeIsActive} />
       </div>
     );
   }

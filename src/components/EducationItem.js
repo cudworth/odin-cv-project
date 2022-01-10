@@ -1,10 +1,13 @@
 import { Component } from "react";
-import "./General.css";
 
-class General extends Component {
+class EducationItem extends Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", email: "", phone: "" };
+    this.state = {
+      institution: "",
+      program: "",
+      date: "",
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.renderForm = this.renderForm.bind(this);
@@ -21,38 +24,38 @@ class General extends Component {
   }
 
   renderForm() {
-    const { name, email, phone } = this.state;
+    const { institution, program, date } = this.state;
     return (
-      <form>
+      <form name="EducationItem" className="form">
         <ul>
           <li>
             <input
               type="text"
-              value={name}
+              value={institution}
               onChange={this.handleChange}
-              name="name"
+              name="institution"
             />
-            <label>Name</label>
+            <label>Institution</label>
           </li>
 
           <li>
             <input
-              type="email"
-              value={email}
+              type="text"
+              value={program}
               onChange={this.handleChange}
-              name="email"
+              name="program"
             />
-            <label>Email</label>
+            <label>Program</label>
           </li>
 
           <li>
             <input
-              type="tel"
-              value={phone}
+              type="date"
+              value={date}
               onChange={this.handleChange}
-              name="phone"
+              name="date"
             />
-            <label>Phone Number</label>
+            <label>Date</label>
           </li>
         </ul>
       </form>
@@ -60,23 +63,19 @@ class General extends Component {
   }
 
   renderInfo() {
-    const { name, email, phone } = this.state;
+    const { institution, program, date } = this.state;
     return (
       <div>
-        <h1>{name}</h1>
-        <h4>{email}</h4>
-        <h4>{phone}</h4>
+        <h2>{institution}</h2>
+        <h3>{program}</h3>
+        <h3>{date}</h3>
       </div>
     );
   }
 
   render() {
-    return (
-      <div className="general">
-        {this.props.editModeIsActive ? this.renderForm() : this.renderInfo()}
-      </div>
-    );
+    return this.props.editModeIsActive ? this.renderForm() : this.renderInfo();
   }
 }
 
-export default General;
+export default EducationItem;
