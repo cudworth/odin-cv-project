@@ -31,8 +31,11 @@ class General extends Component {
               value={name}
               onChange={this.handleChange}
               name="name"
+              placeholder="Full Name"
             />
-            <label>Name</label>
+            <label htmlFor="name" className="no-display">
+              Name
+            </label>
           </li>
 
           <li>
@@ -41,8 +44,11 @@ class General extends Component {
               value={email}
               onChange={this.handleChange}
               name="email"
+              placeholder="Email Address"
             />
-            <label>Email</label>
+            <label htmlFor="email" className="no-display">
+              Email
+            </label>
           </li>
 
           <li>
@@ -51,8 +57,11 @@ class General extends Component {
               value={phone}
               onChange={this.handleChange}
               name="phone"
+              placeholder="Phone Number"
             />
-            <label>Phone Number</label>
+            <label htmlFor="phone" className="no-display">
+              Phone Number
+            </label>
           </li>
         </ul>
       </form>
@@ -63,7 +72,7 @@ class General extends Component {
     const { name, email, phone } = this.state;
     return (
       <div>
-        <h1>{name}</h1>
+        <h3>{name}</h3>
         <h4>{email}</h4>
         <h4>{phone}</h4>
       </div>
@@ -72,7 +81,7 @@ class General extends Component {
 
   render() {
     return (
-      <div className="general">
+      <div className="General">
         {this.props.editModeIsActive ? this.renderForm() : this.renderInfo()}
       </div>
     );

@@ -5,4 +5,59 @@
 
 li {
   list-style-type: none;
+  margin-block: 8px;
+}
+
+input {
+  padding: 4px;
+  outline: none;
+  border: 2px solid #d9d9d9;
+}
+
+input:focus {
+  border-color: #353d40;
+}
+
+button {
+  margin-block: 8px;
+  padding: 8px;
+  background-color: #a1a5a6;
+  color: white;
+  border: 2px solid white;
+  border-radius: 4px;
+  outline: none;
+}
+
+button:focus {
+  border-color: #003f63;
+}
+
+button:hover {
+  background-color: #003f63;
+  border-color: #003f63;
+}
+
+#root {
+  padding: 18px;
+}
+
+#save-button {
+  margin: 0;
+  position: fixed;
+  right: 8px;
+  top: 8px;
+}
+
+.Header {
+  color: #f2b138;
+  background-color: #353d40;
+  padding-inline: 64px;
+}
+
+.App {
+  background-color: #d9d9d9;
+}
+
+.no-display {
+  display: none;
 }

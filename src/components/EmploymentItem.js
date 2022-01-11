@@ -36,8 +36,11 @@ class EmploymentItem extends Component {
               value={company}
               onChange={this.handleChange}
               name="company"
+              placeholder="Company"
             />
-            <label>Company</label>
+            <label htmlFor="company" className="no-display">
+              Company
+            </label>
           </li>
 
           <li>
@@ -46,8 +49,11 @@ class EmploymentItem extends Component {
               value={title}
               onChange={this.handleChange}
               name="title"
+              placeholder="Title"
             />
-            <label>Title</label>
+            <label htmlFor="title" className="no-display">
+              Title
+            </label>
           </li>
 
           <li>
@@ -56,28 +62,37 @@ class EmploymentItem extends Component {
               value={description}
               onChange={this.handleChange}
               name="description"
+              placeholder="Description"
             />
-            <label>Description</label>
+            <label htmlFor="description" className="no-display">
+              Description
+            </label>
           </li>
 
           <li>
             <input
-              type="date"
+              type="text"
               value={startDate}
               onChange={this.handleChange}
               name="startDate"
+              placeholder="Start Date"
             />
-            <label>Start Date</label>
+            <label htmlFor="startDate" className="no-display">
+              Start Date
+            </label>
           </li>
 
           <li>
             <input
-              type="date"
+              type="text"
               value={endDate}
               onChange={this.handleChange}
               name="endDate"
+              placeholder="End Date"
             />
-            <label>End Date</label>
+            <label htmlFor="endDate" className="no-display">
+              End Date
+            </label>
           </li>
         </ul>
       </form>
@@ -88,9 +103,9 @@ class EmploymentItem extends Component {
     const { company, title, description, startDate, endDate } = this.state;
     return (
       <div>
-        <h1>{title}</h1>
-        <h4>{description}</h4>
-        <h4>{company}</h4>
+        <h4>{title}</h4>
+        <h5>{description}</h5>
+        <h5>{company}</h5>
         <h5>{startDate}</h5>
         <h5>{endDate}</h5>
       </div>

@@ -28,7 +28,11 @@ class App extends Component {
 
   saveButton() {
     if (this.state.editModeIsActive) {
-      return <button onClick={this.toggleMode}>Save Changes</button>;
+      return (
+        <button id="save-button" onClick={this.toggleMode}>
+          Save Changes
+        </button>
+      );
     } else {
       return null;
     }
@@ -45,6 +49,9 @@ class App extends Component {
           }
         }}
       >
+        <div className="Header">
+          <h1>Odin CV Generator</h1>
+        </div>
         {this.saveButton()}
         <General editModeIsActive={editModeIsActive} />
         <Education editModeIsActive={editModeIsActive} />

@@ -48,7 +48,8 @@ class Employment extends Component {
 
   render() {
     return (
-      <div className="employment">
+      <div className="Employment">
+        <h2>Employment</h2>
         {this.renderEmployment()}
         {this.props.editModeIsActive ? (
           <button onClick={this.createItem}>Add Employment</button>

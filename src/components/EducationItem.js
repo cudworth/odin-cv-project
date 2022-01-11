@@ -34,8 +34,11 @@ class EducationItem extends Component {
               value={institution}
               onChange={this.handleChange}
               name="institution"
+              placeholder="Institution"
             />
-            <label>Institution</label>
+            <label htmlFor="institution" className="no-display">
+              Institution
+            </label>
           </li>
 
           <li>
@@ -44,18 +47,24 @@ class EducationItem extends Component {
               value={program}
               onChange={this.handleChange}
               name="program"
+              placeholder="Program of Study"
             />
-            <label>Program</label>
+            <label htmlFor="program" className="no-display">
+              Program
+            </label>
           </li>
 
           <li>
             <input
-              type="date"
+              type="text"
               value={date}
               onChange={this.handleChange}
               name="date"
+              placeholder="Graduation Date"
             />
-            <label>Date</label>
+            <label htmlFor="date" className="no-display">
+              Date
+            </label>
           </li>
         </ul>
       </form>
@@ -66,9 +75,9 @@ class EducationItem extends Component {
     const { institution, program, date } = this.state;
     return (
       <div>
-        <h2>{institution}</h2>
-        <h3>{program}</h3>
-        <h3>{date}</h3>
+        <h4>{institution}</h4>
+        <h5>{program}</h5>
+        <h5>{date}</h5>
       </div>
     );
   }
