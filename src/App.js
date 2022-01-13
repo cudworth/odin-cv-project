@@ -49,13 +49,16 @@ class App extends Component {
           }
         }}
       >
+        {this.saveButton()}
+
         <div className="Header">
           <h1>Odin CV Generator</h1>
         </div>
-        {this.saveButton()}
-        <General editModeIsActive={editModeIsActive} />
-        <Education editModeIsActive={editModeIsActive} />
-        <Employment editModeIsActive={editModeIsActive} />
+        <div>
+          <General editModeIsActive={editModeIsActive} />
+          <Education editModeIsActive={editModeIsActive} />
+          <Employment editModeIsActive={editModeIsActive} />
+        </div>
       </div>
     );
   }

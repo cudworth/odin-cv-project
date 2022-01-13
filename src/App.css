@@ -1,3 +1,19 @@
+.LOFT-REDUX-LMC-1-hex {
+  color: #353d40;
+}
+.LOFT-REDUX-LMC-2-hex {
+  color: #d9d9d9;
+}
+.LOFT-REDUX-LMC-3-hex {
+  color: #a1a5a6;
+}
+.LOFT-REDUX-LMC-4-hex {
+  color: #f2b138;
+}
+.LOFT-REDUX-LMC-5-hex {
+  color: #003f63;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -14,8 +30,12 @@ input {
   border: 2px solid #d9d9d9;
 }
 
-input:focus {
+input:hover {
   border-color: #353d40;
+}
+
+input:focus {
+  border-color: #f2b138;
 }
 
 button {
@@ -23,13 +43,13 @@ button {
   padding: 8px;
   background-color: #a1a5a6;
   color: white;
-  border: 2px solid white;
+  border: 2px solid #a1a5a6;
   border-radius: 4px;
   outline: none;
 }
 
 button:focus {
-  border-color: #003f63;
+  border-color: #f2b138;
 }
 
 button:hover {
@@ -37,25 +57,28 @@ button:hover {
   border-color: #003f63;
 }
 
-#root {
-  padding: 18px;
-}
-
 #save-button {
   margin: 0;
-  position: fixed;
-  right: 8px;
-  top: 8px;
+  position: absolute;
+  right: 18px;
+  top: 18px;
 }
 
 .Header {
   color: #f2b138;
   background-color: #353d40;
-  padding-inline: 64px;
+  padding-inline: 32px;
 }
 
 .App {
-  background-color: #d9d9d9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  padding: 18px;
+  background-color: #353d40;
 }
 
 .no-display {

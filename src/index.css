@@ -1,8 +1,4 @@
 body {
-  width: 100vw;
-  height: 100vh;
-  background-color: #353d40;
-
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -13,20 +9,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-.LOFT-REDUX-LMC-1-hex {
-  color: #353d40;
-}
-.LOFT-REDUX-LMC-2-hex {
-  color: #d9d9d9;
-}
-.LOFT-REDUX-LMC-3-hex {
-  color: #a1a5a6;
-}
-.LOFT-REDUX-LMC-4-hex {
-  color: #f2b138;
-}
-.LOFT-REDUX-LMC-5-hex {
-  color: #003f63;
 }

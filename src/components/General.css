@@ -1,5 +1,6 @@
 .General {
   background-color: white;
-  margin: 12px;
   padding: 24px;
+  margin-block: 18px;
+  border-radius: 4px;
 }
