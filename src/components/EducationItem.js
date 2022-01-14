@@ -4,9 +4,9 @@ class EducationItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      institution: "",
-      program: "",
-      date: "",
+      institution: "Iowa State University",
+      program: "BS Materials Engineering",
+      date: "12/2011",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -74,10 +74,10 @@ class EducationItem extends Component {
   renderInfo() {
     const { institution, program, date } = this.state;
     return (
-      <div>
-        <h4>{institution}</h4>
-        <h5>{program}</h5>
-        <h5>{date}</h5>
+      <div className="education-item">
+        <h4>
+          {program}, {institution}, {date}
+        </h4>
       </div>
     );
   }

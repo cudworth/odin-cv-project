@@ -4,11 +4,12 @@ class EmploymentItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      company: "",
-      title: "",
-      description: "",
-      startDate: "",
-      endDate: "",
+      company: "Owens Corning",
+      title: "Manufacturing Engineer",
+      description:
+        "Various manufacturing tasks and activities as necessitated by the management.",
+      startDate: "1/2011",
+      endDate: "8/2013",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -102,12 +103,11 @@ class EmploymentItem extends Component {
   renderInfo() {
     const { company, title, description, startDate, endDate } = this.state;
     return (
-      <div>
-        <h4>{title}</h4>
+      <div className="employment-item">
+        <h4>
+          {title}, {company}, {startDate} - {endDate}
+        </h4>
         <h5>{description}</h5>
-        <h5>{company}</h5>
-        <h5>{startDate}</h5>
-        <h5>{endDate}</h5>
       </div>
     );
   }

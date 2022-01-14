@@ -4,7 +4,11 @@ import "./General.css";
 class General extends Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", email: "", phone: "" };
+    this.state = {
+      name: "Austin Cudworth",
+      email: "austincudworth@gmail.com",
+      phone: "816-832-0060",
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.renderForm = this.renderForm.bind(this);
@@ -72,9 +76,10 @@ class General extends Component {
     const { name, email, phone } = this.state;
     return (
       <div>
-        <h3>{name}</h3>
-        <h4>{email}</h4>
-        <h4>{phone}</h4>
+        <h1>{name}</h1>
+        <h4 style={{ paddingBlockStart: "12px" }}>
+          Email: {email} | Phone: {phone}
+        </h4>
       </div>
     );
   }
