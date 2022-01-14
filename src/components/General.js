@@ -5,9 +5,9 @@ class General extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "Austin Cudworth",
-      email: "austincudworth@gmail.com",
-      phone: "816-832-0060",
+      name: "",
+      email: "",
+      phone: "",
     };
 
     this.handleChange = this.handleChange.bind(this);

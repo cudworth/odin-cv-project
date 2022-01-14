@@ -4,9 +4,9 @@ class EducationItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      institution: "Iowa State University",
-      program: "BS Materials Engineering",
-      date: "12/2011",
+      institution: "",
+      program: "",
+      date: "",
     };
 
     this.handleChange = this.handleChange.bind(this);

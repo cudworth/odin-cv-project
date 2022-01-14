@@ -4,12 +4,11 @@ class EmploymentItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      company: "Owens Corning",
-      title: "Manufacturing Engineer",
-      description:
-        "Various manufacturing tasks and activities as necessitated by the management.",
-      startDate: "1/2011",
-      endDate: "8/2013",
+      company: "",
+      title: "",
+      description: "",
+      startDate: "",
+      endDate: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
