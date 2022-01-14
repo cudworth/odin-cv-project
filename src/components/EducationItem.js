@@ -1,30 +1,23 @@
-import { Component } from "react";
+import { useState } from "react";
 
-class EducationItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      institution: "",
-      program: "",
-      date: "",
-    };
+function EducationItem(props) {
+  const [state, setState] = useState({
+    institution: "",
+    program: "",
+    date: "",
+  });
 
-    this.handleChange = this.handleChange.bind(this);
-    this.renderForm = this.renderForm.bind(this);
-    this.renderInfo = this.renderInfo.bind(this);
-  }
-
-  handleChange(e) {
+  function handleChange(e) {
     const { name, value } = e.target;
-    this.setState((prev) => {
+    setState((prev) => {
       const next = { ...prev };
       next[name] = value;
       return next;
     });
   }
 
-  renderForm() {
-    const { institution, program, date } = this.state;
+  function renderForm() {
+    const { institution, program, date } = state;
     return (
       <form name="EducationItem" className="form">
         <ul>
@@ -32,7 +25,7 @@ class EducationItem extends Component {
             <input
               type="text"
               value={institution}
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="institution"
               placeholder="Institution"
             />
@@ -45,7 +38,7 @@ class EducationItem extends Component {
             <input
               type="text"
               value={program}
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="program"
               placeholder="Program of Study"
             />
@@ -58,7 +51,7 @@ class EducationItem extends Component {
             <input
               type="text"
               value={date}
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="date"
               placeholder="Graduation Date"
             />
@@ -71,8 +64,8 @@ class EducationItem extends Component {
     );
   }
 
-  renderInfo() {
-    const { institution, program, date } = this.state;
+  function renderInfo() {
+    const { institution, program, date } = state;
     return (
       <div className="education-item">
         <h4>
@@ -82,9 +75,7 @@ class EducationItem extends Component {
     );
   }
 
-  render() {
-    return this.props.editModeIsActive ? this.renderForm() : this.renderInfo();
-  }
+  return props.editModeIsActive ? renderForm() : renderInfo();
 }
 
 export default EducationItem;

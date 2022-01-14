@@ -1,31 +1,24 @@
-import { Component } from "react";
+import { useState } from "react";
 import "./General.css";
 
-class General extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      email: "",
-      phone: "",
-    };
+function General(props) {
+  const [state, setState] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
 
-    this.handleChange = this.handleChange.bind(this);
-    this.renderForm = this.renderForm.bind(this);
-    this.renderInfo = this.renderInfo.bind(this);
-  }
-
-  handleChange(e) {
+  function handleChange(e) {
     const { name, value } = e.target;
-    this.setState((prev) => {
+    setState((prev) => {
       const next = { ...prev };
       next[name] = value;
       return next;
     });
   }
 
-  renderForm() {
-    const { name, email, phone } = this.state;
+  function renderForm() {
+    const { name, email, phone } = state;
     return (
       <form>
         <ul>
@@ -33,7 +26,7 @@ class General extends Component {
             <input
               type="text"
               value={name}
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="name"
               placeholder="Full Name"
             />
@@ -46,7 +39,7 @@ class General extends Component {
             <input
               type="email"
               value={email}
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="email"
               placeholder="Email Address"
             />
@@ -59,7 +52,7 @@ class General extends Component {
             <input
               type="tel"
               value={phone}
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="phone"
               placeholder="Phone Number"
             />
@@ -72,8 +65,8 @@ class General extends Component {
     );
   }
 
-  renderInfo() {
-    const { name, email, phone } = this.state;
+  function renderInfo() {
+    const { name, email, phone } = state;
     return (
       <div>
         <h1>{name}</h1>
@@ -84,13 +77,11 @@ class General extends Component {
     );
   }
 
-  render() {
-    return (
-      <div className="General">
-        {this.props.editModeIsActive ? this.renderForm() : this.renderInfo()}
-      </div>
-    );
-  }
+  return (
+    <div className="General">
+      {props.editModeIsActive ? renderForm() : renderInfo()}
+    </div>
+  );
 }
 
 export default General;

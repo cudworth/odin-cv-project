@@ -1,35 +1,29 @@
 import "./App.css";
 
-import { Component } from "react";
+import { useState } from "react";
 
 import General from "./components/General";
 import Education from "./components/Education";
 import Employment from "./components/Employment";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { editModeIsActive: true };
+function App(props) {
+  const [state, setState] = useState({ editModeIsActive: true });
 
-    this.toggleMode = this.toggleMode.bind(this);
-    this.saveButton = this.saveButton.bind(this);
-  }
-
-  toggleMode(e) {
+  function toggleMode(e) {
     if (e) {
       e.preventDefault();
     }
-    this.setState((prev) => {
+    setState((prev) => {
       const next = { ...prev };
       next.editModeIsActive = !next.editModeIsActive;
       return next;
     });
   }
 
-  saveButton() {
-    if (this.state.editModeIsActive) {
+  function saveButton() {
+    if (state.editModeIsActive) {
       return (
-        <button id="save-button" onClick={this.toggleMode}>
+        <button id="save-button" onClick={toggleMode}>
           Save Changes
         </button>
       );
@@ -38,30 +32,27 @@ class App extends Component {
     }
   }
 
-  render() {
-    const { editModeIsActive } = this.state;
-    return (
-      <div
-        className="App"
-        onClick={() => {
-          if (!editModeIsActive) {
-            this.toggleMode();
-          }
-        }}
-      >
-        {this.saveButton()}
+  return (
+    <div
+      className="App"
+      onClick={() => {
+        if (!state.editModeIsActive) {
+          toggleMode();
+        }
+      }}
+    >
+      {saveButton()}
 
-        <div className="Header">
-          <h1>Odin CV Generator</h1>
-        </div>
-        <div>
-          <General editModeIsActive={editModeIsActive} />
-          <Education editModeIsActive={editModeIsActive} />
-          <Employment editModeIsActive={editModeIsActive} />
-        </div>
+      <div className="Header">
+        <h1>Odin CV Generator</h1>
       </div>
-    );
-  }
+      <div>
+        <General editModeIsActive={state.editModeIsActive} />
+        <Education editModeIsActive={state.editModeIsActive} />
+        <Employment editModeIsActive={state.editModeIsActive} />
+      </div>
+    </div>
+  );
 }
 
 export default App;

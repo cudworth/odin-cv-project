@@ -1,32 +1,25 @@
-import { Component } from "react";
+import { useState } from "react";
 
-class EmploymentItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      company: "",
-      title: "",
-      description: "",
-      startDate: "",
-      endDate: "",
-    };
+function EmploymentItem(props) {
+  const [state, setState] = useState({
+    company: "",
+    title: "",
+    description: "",
+    startDate: "",
+    endDate: "",
+  });
 
-    this.handleChange = this.handleChange.bind(this);
-    this.renderForm = this.renderForm.bind(this);
-    this.renderInfo = this.renderInfo.bind(this);
-  }
-
-  handleChange(e) {
+  function handleChange(e) {
     const { name, value } = e.target;
-    this.setState((prev) => {
+    setState((prev) => {
       const next = { ...prev };
       next[name] = value;
       return next;
     });
   }
 
-  renderForm() {
-    const { company, title, description, startDate, endDate } = this.state;
+  function renderForm() {
+    const { company, title, description, startDate, endDate } = state;
     return (
       <form name="EmploymentItem" className="form">
         <ul>
@@ -34,7 +27,7 @@ class EmploymentItem extends Component {
             <input
               type="text"
               value={company}
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="company"
               placeholder="Company"
             />
@@ -47,7 +40,7 @@ class EmploymentItem extends Component {
             <input
               type="text"
               value={title}
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="title"
               placeholder="Title"
             />
@@ -60,7 +53,7 @@ class EmploymentItem extends Component {
             <input
               type="text"
               value={description}
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="description"
               placeholder="Description"
             />
@@ -73,7 +66,7 @@ class EmploymentItem extends Component {
             <input
               type="text"
               value={startDate}
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="startDate"
               placeholder="Start Date"
             />
@@ -86,7 +79,7 @@ class EmploymentItem extends Component {
             <input
               type="text"
               value={endDate}
-              onChange={this.handleChange}
+              onChange={handleChange}
               name="endDate"
               placeholder="End Date"
             />
@@ -99,8 +92,8 @@ class EmploymentItem extends Component {
     );
   }
 
-  renderInfo() {
-    const { company, title, description, startDate, endDate } = this.state;
+  function renderInfo() {
+    const { company, title, description, startDate, endDate } = state;
     return (
       <div className="employment-item">
         <h4>
@@ -111,9 +104,7 @@ class EmploymentItem extends Component {
     );
   }
 
-  render() {
-    return this.props.editModeIsActive ? this.renderForm() : this.renderInfo();
-  }
+  return props.editModeIsActive ? renderForm() : renderInfo();
 }
 
 export default EmploymentItem;

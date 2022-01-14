@@ -1,43 +1,39 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import EducationItem from "./EducationItem";
 import "./Education.css";
 
-class Education extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.keys = [];
+function Education(props) {
+  const [keys, setKeys] = useState([]);
 
-    this.createItem = this.createItem.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
-    this.renderEducation = this.renderEducation.bind(this);
-  }
+  useEffect(() => createItem(), []);
 
-  componentDidMount() {
-    this.createItem();
-  }
-
-  createItem() {
+  function createItem() {
     const key = ["edu", Date.now()].join("_");
-    this.keys.push(key);
-    this.setState((state) => state);
+    setKeys((prev) => {
+      const keys = [...prev];
+      keys.push(key);
+      return keys;
+    });
   }
 
-  deleteItem(e) {
+  function deleteItem(e) {
     const key = e.target.name;
-    const index = this.keys.indexOf(key);
-    this.keys.splice(index, 1);
-    this.setState((state) => state);
+    const index = keys.indexOf(key);
+    setKeys((prev) => {
+      const keys = [...prev];
+      keys.splice(index, 1);
+      return keys;
+    });
   }
 
-  renderEducation() {
-    const { editModeIsActive } = this.props;
-    return this.keys.map((key) => {
+  function renderEducation() {
+    const { editModeIsActive } = props;
+    return keys.map((key) => {
       return (
         <div key={key}>
           <EducationItem editModeIsActive={editModeIsActive} />
           {editModeIsActive ? (
-            <button name={key} onClick={this.deleteItem}>
+            <button name={key} onClick={deleteItem}>
               Delete
             </button>
           ) : null}
@@ -46,17 +42,15 @@ class Education extends Component {
     });
   }
 
-  render() {
-    return (
-      <div className="Education">
-        <h2>Education</h2>
-        {this.renderEducation()}
-        {this.props.editModeIsActive ? (
-          <button onClick={this.createItem}>Add Education</button>
-        ) : null}
-      </div>
-    );
-  }
+  return (
+    <div className="Education">
+      <h2>Education</h2>
+      {renderEducation()}
+      {props.editModeIsActive ? (
+        <button onClick={createItem}>Add Education</button>
+      ) : null}
+    </div>
+  );
 }
 
 export default Education;
